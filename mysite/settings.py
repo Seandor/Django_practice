@@ -28,7 +28,8 @@ ALLOWED_HOSTS = []
 
 # Template dir
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates/west/')
+    os.path.join(BASE_DIR, 'templates/west/'),
+    os.path.join(BASE_DIR, 'templates/users/'),
 )
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'west',
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
