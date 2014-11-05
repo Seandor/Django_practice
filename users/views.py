@@ -7,11 +7,12 @@ from django.shortcuts import redirect
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 
 def first_page(request):
     return HttpResponse("<h1>Bazinga!</h1>")
 
-class LoginForm(forms.Form):
+#class LoginForm(forms.Form):
     username = forms.CharField(max_length=200)
     password = forms.CharField(widget=forms.PasswordInput)   # maybe need to modify the field
 
@@ -31,7 +32,7 @@ def user_login(request):
     login view.
     '''
     if request.POST:
-        form = LoginForm(request.POST)
+        form = AuthenticationForm(request.POST)
         if form.is_valid():
             username = password = ''
             username = form.cleaned_data['username']
@@ -42,7 +43,7 @@ def user_login(request):
                 return diff_response(request)
             else:
                 return diff_response(request)
-    form = LoginForm()
+    form = AuthenticationForm()
     ctx = {}
     ctx.update(csrf(request))
     ctx['form'] = form
